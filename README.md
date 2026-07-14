@@ -14,6 +14,7 @@ Fullstack-тестовое задание: расписание бесплатн
 - NestJS API с DTO-валидацией query-параметров.
 - MongoDB с автоматическим заполнением демо-данными при первом запуске.
 - Docker Compose для запуска frontend, API и MongoDB.
+- FSD-структура frontend с автоматической проверкой направлений слоёв и public API.
 
 Запись и оплата намеренно не реализованы в соответствии с условием задания.
 
@@ -86,6 +87,8 @@ GET /api/trainings/:id
 ```
 
 ## Архитектурные решения
+
+Frontend организован по слоям `app`, `pages`, `widgets`, `features`, `entities`, `shared`. Межслойные импорты проходят только через public API слайсов. Команда `npm run check:fsd` автоматически проверяет deep imports и направления зависимостей.
 
 Frontend не содержит расписание и получает его из REST API. Фильтры передаются на backend через query-параметры. API разделён на controller, service, DTO и Mongoose schema.
 

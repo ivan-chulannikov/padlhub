@@ -1,11 +1,12 @@
-export type Station = 'Все станции' | 'Нагатинская' | 'Терехово' | 'Ясенево';
+export type StationName = 'Нагатинская' | 'Терехово' | 'Ясенево';
+export type StationFilter = 'Все станции' | StationName;
 
 export type Training = {
   id: number;
   date: string;
   time: string;
   title: string;
-  station: Exclude<Station, 'Все станции'>;
+  station: StationName;
   address: string;
   coach: string;
   duration: number;

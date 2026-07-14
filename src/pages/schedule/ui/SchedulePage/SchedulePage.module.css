@@ -1,0 +1,148 @@
+.page {
+  width: min(100% - 40px, 1380px);
+  margin: 0 auto;
+}
+
+.header {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  text-decoration: none;
+}
+
+.logo i {
+  width: 11px;
+  height: 11px;
+  display: block;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38b96b;
+  box-shadow: 0 0 0 4px rgb(56 185 107 / 12%);
+}
+
+.hero {
+  min-height: 440px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.7fr);
+  align-items: end;
+  gap: 64px;
+  padding: 80px 0 64px;
+}
+
+.hero > * {
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 24px;
+  color: var(--violet);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(54px, 7.5vw, 112px);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.hero h1 .accent {
+  color: var(--violet);
+}
+
+.intro {
+  margin: 0 0 10px;
+  padding-top: 24px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+  border-top: 1px solid var(--line);
+}
+
+.footer {
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 780px) {
+  .page {
+    width: min(100% - 28px, 1380px);
+  }
+
+  .header {
+    min-height: 74px;
+  }
+
+  .meta span:last-child,
+  .status {
+    display: none;
+  }
+
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 62px 0 52px;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 10.8vw, 64px);
+  }
+
+  .intro {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,102 @@
+.filters {
+  display: contents;
+}
+
+.station {
+  min-width: 260px;
+  display: grid;
+  gap: 8px;
+  color: #aaa7b1;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.station select {
+  width: 100%;
+  padding: 14px 42px 14px 16px;
+  color: var(--paper);
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  background: #222125;
+  border: 1px solid #3b393f;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.station select:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.dates {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(88px, 1fr));
+  margin-top: 48px;
+  border: 1px solid #37353a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dates button {
+  min-height: 90px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 7px;
+  padding: 10px;
+  color: #a9a6ad;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid #37353a;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.dates button:last-child {
+  border-right: 0;
+}
+
+.dates button:hover,
+.dates button:focus-visible {
+  color: var(--paper);
+  background: #27262a;
+}
+
+.dates button span {
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.dates button strong {
+  color: inherit;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.dates .active,
+.dates .active:hover,
+.dates .active:focus-visible {
+  color: #17161a;
+  background: var(--accent);
+}
+
+@media (max-width: 1100px) {
+  .dates {
+    overflow-x: auto;
+    grid-template-columns: repeat(8, minmax(94px, 1fr));
+  }
+}
+
+@media (max-width: 780px) {
+  .station {
+    min-width: 0;
+  }
+
+  .dates {
+    margin-top: 32px;
+  }
+}

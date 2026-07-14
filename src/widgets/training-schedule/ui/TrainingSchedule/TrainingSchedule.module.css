@@ -1,0 +1,84 @@
+.schedule {
+  margin: 0 calc(50% - 50vw);
+  padding: 70px max(20px, calc((100vw - 1380px) / 2));
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0 32px;
+  margin-bottom: 62px;
+}
+
+.number {
+  margin: 0 0 14px;
+  color: #a897ff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.controls h2 {
+  margin: 0;
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.day + .day {
+  margin-top: 64px;
+}
+
+.dayHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.dayHeading h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.dayHeading span {
+  color: #85828a;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.cards {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 780px) {
+  .schedule {
+    padding-block: 52px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    margin-bottom: 42px;
+  }
+
+  .controls > div:first-child {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dayHeading {
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}

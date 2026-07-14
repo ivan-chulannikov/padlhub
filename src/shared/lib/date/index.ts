@@ -1,0 +1,1 @@
+export { formatDayHeading } from './formatDayHeading';
