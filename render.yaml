@@ -28,7 +28,3 @@ services:
           type: web
           name: padlhub-trial-api-ivan
           envVarKey: RENDER_EXTERNAL_HOSTNAME
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
