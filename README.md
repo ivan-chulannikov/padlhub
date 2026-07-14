@@ -92,6 +92,25 @@ GET /api/trainings/:id
 
 Frontend организован по слоям `app`, `pages`, `widgets`, `features`, `entities`, `shared`. Межслойные импорты проходят только через public API слайсов. Команда `npm run check:fsd` автоматически проверяет deep imports и направления зависимостей.
 
+Backend организован как модульный монолит по доменам. `AppModule` отвечает только за композицию приложения и инфраструктурные подключения, а `HealthModule` и `TrainingsModule` инкапсулируют собственные controllers, services, DTO и persistence-схемы.
+
+```text
+backend/src/
+├── app.module.ts
+├── main.ts
+└── modules/
+    ├── health/
+    │   ├── health.controller.ts
+    │   ├── health.service.ts
+    │   └── health.module.ts
+    └── trainings/
+        ├── dto/
+        ├── schemas/
+        ├── trainings.controller.ts
+        ├── trainings.service.ts
+        └── trainings.module.ts
+```
+
 Frontend не содержит расписание и получает его из REST API. Фильтры передаются на backend через query-параметры. API разделён на controller, service, DTO и Mongoose schema.
 
 Seed выполняется только для пустой коллекции: проверяющий получает наполненный интерфейс сразу после `docker compose up`, а повторный запуск не создаёт дубликаты.
