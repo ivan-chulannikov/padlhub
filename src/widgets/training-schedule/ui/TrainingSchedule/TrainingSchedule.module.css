@@ -74,11 +74,12 @@
   .controls {
     grid-template-columns: 1fr;
     align-items: stretch;
+    row-gap: 18px;
     margin-bottom: 42px;
   }
 
   .controls > div:first-child {
-    margin-bottom: 32px;
+    margin-bottom: 14px;
   }
 }
 

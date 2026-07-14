@@ -5,7 +5,7 @@
 .selectField {
   min-width: 220px;
   display: grid;
-  gap: 8px;
+  gap: 11px;
   color: var(--text-muted);
   font-size: 11px;
   letter-spacing: 0.1em;
@@ -20,9 +20,12 @@
 }
 
 .dates {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(8, minmax(88px, 1fr));
+  grid-template-columns: repeat(8, minmax(80px, 1fr));
   margin-top: 48px;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -30,7 +33,7 @@
 }
 
 .dates button {
-  min-height: 90px;
+  min-height: 76px;
   display: grid;
   place-items: center;
   align-content: center;
@@ -64,6 +67,7 @@
   color: inherit;
   font-size: 22px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .dates .active,
@@ -76,7 +80,25 @@
 @media (max-width: 1100px) {
   .dates {
     overflow-x: auto;
-    grid-template-columns: repeat(8, minmax(94px, 1fr));
+    overscroll-behavior-inline: contain;
+    grid-template-columns: repeat(8, minmax(84px, 1fr));
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dates::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .dates::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 999px;
+  }
+
+  .dates button {
+    scroll-snap-align: start;
   }
 }
 
@@ -86,6 +108,31 @@
   }
 
   .dates {
-    margin-top: 32px;
+    grid-template-columns: repeat(8, minmax(78px, 1fr));
+    margin-top: 14px;
+  }
+
+  .dates button {
+    min-height: 72px;
+  }
+
+  .dates button strong {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dates {
+    grid-template-columns: repeat(8, minmax(70px, 1fr));
+  }
+
+  .dates button {
+    min-height: 66px;
+    gap: 4px;
+    padding: 7px;
+  }
+
+  .dates button strong {
+    font-size: 18px;
   }
 }
