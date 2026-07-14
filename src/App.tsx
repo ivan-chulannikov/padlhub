@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styles from './App.module.css';
-import { stations, trainings, type Station, type Training } from './data';
+import { getStations, getTrainings } from './api';
+import type { Station, Training } from './data';
 
 const scheduleDays = Array.from({ length: 7 }, (_, index) => {
   const date = new Date(2026, 6, 14 + index);
@@ -124,26 +125,58 @@ function App() {
   const [station, setStation] = useState<Station>('Все станции');
   const [selectedDate, setSelectedDate] = useState('all');
   const [selectedTraining, setSelectedTraining] = useState<Training | null>(null);
+  const [stations, setStations] = useState<Station[]>(['Все станции']);
+  const [trainings, setTrainings] = useState<Training[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [requestVersion, setRequestVersion] = useState(0);
 
-  const visibleTrainings = useMemo(
-    () =>
-      trainings.filter(
-        (training) =>
-          (station === 'Все станции' || training.station === station) &&
-          (selectedDate === 'all' || training.date === selectedDate),
-      ),
-    [selectedDate, station],
-  );
+  useEffect(() => {
+    const controller = new AbortController();
+
+    getStations(controller.signal)
+      .then((items) => setStations(['Все станции', ...items]))
+      .catch((requestError: unknown) => {
+        if (requestError instanceof DOMException && requestError.name === 'AbortError') return;
+        setError('Не удалось загрузить список станций.');
+      });
+
+    return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setIsLoading(true);
+    setError(null);
+
+    getTrainings(
+      {
+        station: station === 'Все станции' ? undefined : station,
+        date: selectedDate === 'all' ? undefined : selectedDate,
+      },
+      controller.signal,
+    )
+      .then(setTrainings)
+      .catch((requestError: unknown) => {
+        if (requestError instanceof DOMException && requestError.name === 'AbortError') return;
+        setError('Не удалось загрузить расписание. Проверьте подключение к API.');
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setIsLoading(false);
+      });
+
+    return () => controller.abort();
+  }, [requestVersion, selectedDate, station]);
 
   const groupedTrainings = useMemo(
     () =>
       Object.entries(
-        visibleTrainings.reduce<Record<string, Training[]>>((groups, training) => {
+        trainings.reduce<Record<string, Training[]>>((groups, training) => {
           (groups[training.date] ??= []).push(training);
           return groups;
         }, {}),
       ),
-    [visibleTrainings],
+    [trainings],
   );
 
   return (
@@ -185,7 +218,11 @@ function App() {
             </div>
             <label className={styles.stationSelect}>
               <span>Станция</span>
-              <select value={station} onChange={(event) => setStation(event.target.value as Station)}>
+              <select
+                value={station}
+                disabled={stations.length === 1}
+                onChange={(event) => setStation(event.target.value as Station)}
+              >
                 {stations.map((item) => (
                   <option key={item}>{item}</option>
                 ))}
@@ -216,7 +253,24 @@ function App() {
           </div>
 
           <div className={styles.scheduleBody} aria-live="polite">
-            {groupedTrainings.length ? (
+            {isLoading ? (
+              <div className={styles.statePanel} role="status">
+                <span className={styles.loader} aria-hidden="true" />
+                <h2>Загружаем расписание</h2>
+                <p>Получаем ближайшие тренировки из API.</p>
+              </div>
+            ) : error ? (
+              <div className={styles.statePanel} role="alert">
+                <span className={styles.stateIcon} aria-hidden="true">
+                  !
+                </span>
+                <h2>Расписание временно недоступно</h2>
+                <p>{error}</p>
+                <button type="button" onClick={() => setRequestVersion((version) => version + 1)}>
+                  Повторить
+                </button>
+              </div>
+            ) : groupedTrainings.length ? (
               groupedTrainings.map(([date, items]) => (
                 <section className={styles.dayGroup} key={date}>
                   <div className={styles.dayHeading}>
@@ -257,8 +311,8 @@ function App() {
       </main>
 
       <footer className={styles.footer}>
-        <p>Тестовое задание · Frontend demo</p>
-        <p>React 19 · TypeScript · CSS Modules</p>
+        <p>Тестовое задание · Fullstack demo</p>
+        <p>React 19 · NestJS · MongoDB</p>
       </footer>
 
       {selectedTraining && (
