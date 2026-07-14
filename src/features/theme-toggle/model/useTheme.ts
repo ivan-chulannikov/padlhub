@@ -20,7 +20,7 @@ export const useTheme = () => {
     try {
       localStorage.setItem(storageKey, theme);
     } catch {
-      // The selected theme still works when storage is unavailable.
+      return;
     }
   }, [theme]);
 
