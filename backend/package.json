@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "0.0.1",
-  "description": "",
+  "description": "REST API расписания первых пробных тренировок Падл хаб",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -26,6 +26,7 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/mongoose": "^11.0.4",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/swagger": "^11.4.5",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "mongoose": "^9.7.4",

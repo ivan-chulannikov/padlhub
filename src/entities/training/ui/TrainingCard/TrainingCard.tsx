@@ -1,3 +1,4 @@
+import { pluralizeRussian } from '@/shared/lib/pluralize';
 import type { Training } from '../../model/types';
 import styles from './TrainingCard.module.css';
 
@@ -50,7 +51,10 @@ const TrainingCard = ({ training, onSelect }: TrainingCardProps) => {
             <span key={index} className={index < occupied ? styles.busy : styles.free} />
           ))}
         </div>
-        <strong>{training.spotsLeft} места</strong>
+        <strong>
+          {training.spotsLeft}{' '}
+          {pluralizeRussian(training.spotsLeft, ['место', 'места', 'мест'])}
+        </strong>
         <span>свободно</span>
       </div>
 

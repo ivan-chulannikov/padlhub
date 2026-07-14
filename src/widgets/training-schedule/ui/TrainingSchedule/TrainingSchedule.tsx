@@ -11,6 +11,7 @@ import {
 } from '@/entities/training';
 import { TrainingFilters } from '@/features/filter-trainings';
 import { formatDayHeading } from '@/shared/lib/date';
+import { pluralizeRussian } from '@/shared/lib/pluralize';
 import { StatePanel } from '@/shared/ui/StatePanel';
 import styles from './TrainingSchedule.module.css';
 
@@ -40,7 +41,7 @@ const TrainingSchedule = () => {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [requestVersion]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -129,7 +130,8 @@ const TrainingSchedule = () => {
               <div className={styles.dayHeading}>
                 <h3>{formatDayHeading(date)}</h3>
                 <span>
-                  {items.length} {items.length === 1 ? 'тренировка' : 'тренировки'}
+                  {items.length}{' '}
+                  {pluralizeRussian(items.length, ['тренировка', 'тренировки', 'тренировок'])}
                 </span>
               </div>
               <div className={styles.cards}>

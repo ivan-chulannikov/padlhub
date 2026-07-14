@@ -1,0 +1,1 @@
+export { pluralizeRussian } from './pluralizeRussian';

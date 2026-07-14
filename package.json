@@ -12,6 +12,7 @@
     "check:fsd": "node scripts/check-fsd-imports.mjs",
     "lint:api": "npm --prefix backend run lint",
     "test:api": "npm --prefix backend test -- --runInBand",
+    "check": "npm run check:fsd && npm run lint && npm run build && npm run lint:api && npm run build:api && npm run test:api",
     "preview": "vite preview"
   },
   "dependencies": {
