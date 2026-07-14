@@ -4,7 +4,7 @@
   place-items: center;
   align-content: center;
   text-align: center;
-  border: 1px dashed #454249;
+  border: 1px dashed var(--border-strong);
   border-radius: 12px;
 }
 
@@ -13,29 +13,29 @@
   font-size: 54px;
 }
 
-.panel h2 {
+.panel h3 {
   margin: 12px 0 8px;
   font-size: 24px;
 }
 
 .panel p {
   margin: 0 0 24px;
-  color: #96939a;
+  color: var(--text-muted);
 }
 
 .panel button {
   min-height: 44px;
   padding: 0 20px;
-  color: var(--paper);
+  color: var(--text);
   background: transparent;
-  border: 1px solid #55515b;
+  border: 1px solid var(--border-strong);
   border-radius: 7px;
   cursor: pointer;
 }
 
 .panel button:hover,
 .panel button:focus-visible {
-  color: var(--ink);
+  color: var(--accent-contrast);
   background: var(--accent);
   border-color: var(--accent);
 }
@@ -44,7 +44,7 @@
   width: 42px;
   height: 42px;
   margin-bottom: 14px;
-  border: 3px solid #3f3c43;
+  border: 3px solid var(--border);
   border-top-color: var(--accent);
   border-radius: 50%;
   animation: spin 800ms linear infinite;
@@ -53,5 +53,11 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    animation-duration: 1600ms;
   }
 }

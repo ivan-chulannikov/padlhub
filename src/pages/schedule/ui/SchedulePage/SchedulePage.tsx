@@ -1,22 +1,29 @@
+import { ThemeToggle } from '@/features/theme-toggle';
 import { TrainingSchedule } from '@/widgets/training-schedule';
 import styles from './SchedulePage.module.css';
 
 const SchedulePage = () => (
   <div className={styles.page}>
+    <a className={styles.skipLink} href="#main-content">
+      Перейти к расписанию
+    </a>
     <header className={styles.header}>
-      <a className={styles.logo} href="#top" aria-label="Падл хаб — на главную">
+      <a className={styles.logo} href="/" aria-label="Падл хаб — на главную">
         <span>ПАДЛ</span>
         <i aria-hidden="true" />
         <span>хАБ</span>
       </a>
-      <div className={styles.meta}>
-        <span>Москва</span>
-        <span className={styles.status} aria-hidden="true" />
-        <span>Расписание обновлено</span>
+      <div className={styles.headerActions}>
+        <div className={styles.meta}>
+          <span>Москва</span>
+          <span className={styles.status} aria-hidden="true" />
+          <span>Расписание обновлено</span>
+        </div>
+        <ThemeToggle />
       </div>
     </header>
 
-    <main id="top">
+    <main id="main-content" tabIndex={-1}>
       <section className={styles.hero}>
         <div>
           <p className={styles.eyebrow}>Падл хаб · Начни играть</p>

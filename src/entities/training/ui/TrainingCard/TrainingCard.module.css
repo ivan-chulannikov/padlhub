@@ -5,14 +5,15 @@
   gap: 26px;
   min-height: 132px;
   padding: 22px 24px;
-  background: #222125;
-  border: 1px solid #353339;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 12px;
   transition: border-color 160ms ease, transform 160ms ease;
 }
 
 .card:hover {
-  border-color: #66616d;
+  border-color: var(--border-strong);
   transform: translateY(-2px);
 }
 
@@ -20,7 +21,7 @@
   display: grid;
   gap: 4px;
   padding-right: 20px;
-  border-right: 1px solid #3a383e;
+  border-right: 1px solid var(--border);
 }
 
 .time time {
@@ -32,7 +33,7 @@
 .time span,
 .availability > span,
 .coach small {
-  color: #89868e;
+  color: var(--text-muted);
   font-size: 11px;
   text-transform: uppercase;
 }
@@ -52,7 +53,7 @@
 .typeBadge {
   display: inline-block;
   padding: 4px 7px;
-  color: #17161a;
+  color: var(--accent-contrast);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -62,11 +63,11 @@
 }
 
 .typeBadge {
-  color: #d8d5dc;
-  background: #39373e;
+  color: var(--text);
+  background: var(--surface-muted);
 }
 
-.main h3 {
+.main h4 {
   margin: 0 0 8px;
   font-size: 18px;
   font-weight: 500;
@@ -76,7 +77,7 @@
   display: flex;
   gap: 6px;
   margin: 0;
-  color: #9e9ba3;
+  color: var(--text-muted);
   font-size: 13px;
 }
 
@@ -85,7 +86,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #e7e5e9;
+  color: var(--text);
   font-size: 13px;
 }
 
@@ -100,10 +101,10 @@
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  color: #c5baff;
+  color: var(--avatar-text);
   font-size: 10px;
   font-weight: 700;
-  background: #3d3760;
+  background: var(--avatar-background);
   border-radius: 50%;
 }
 
@@ -134,7 +135,7 @@
 }
 
 .busy {
-  background: #4a474f;
+  background: var(--surface-muted);
 }
 
 .button {
@@ -144,9 +145,9 @@
   justify-content: space-between;
   gap: 12px;
   padding: 0 18px;
-  color: var(--paper);
+  color: var(--text);
   background: transparent;
-  border: 1px solid #55515b;
+  border: 1px solid var(--border-strong);
   border-radius: 7px;
   cursor: pointer;
   transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
@@ -154,7 +155,7 @@
 
 .button:hover,
 .button:focus-visible {
-  color: #17161a;
+  color: var(--accent-contrast);
   background: var(--accent);
   border-color: var(--accent);
 }

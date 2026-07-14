@@ -17,7 +17,7 @@ const StatePanel = ({ variant, title, description, action }: StatePanelProps) =>
         {variant === 'error' ? '!' : '○'}
       </span>
     )}
-    <h2>{title}</h2>
+    <h3>{title}</h3>
     <p>{description}</p>
     {action}
   </div>

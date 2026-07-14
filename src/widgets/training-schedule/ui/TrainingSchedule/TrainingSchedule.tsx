@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   getStations,
   getTrainingTypes,
@@ -84,6 +84,8 @@ const TrainingSchedule = () => {
     setTrainingType('Все типы');
   };
 
+  const closeTrainingDetails = useCallback(() => setSelectedTraining(null), []);
+
   return (
     <section className={styles.schedule} aria-labelledby="schedule-title">
       <div className={styles.controls}>
@@ -103,7 +105,7 @@ const TrainingSchedule = () => {
         />
       </div>
 
-      <div className={styles.body} aria-live="polite">
+      <div className={styles.body} aria-live="polite" aria-busy={isLoading}>
         {isLoading ? (
           <StatePanel
             variant="loading"
@@ -125,7 +127,7 @@ const TrainingSchedule = () => {
           groupedTrainings.map(([date, items]) => (
             <section className={styles.day} key={date}>
               <div className={styles.dayHeading}>
-                <h2>{formatDayHeading(date)}</h2>
+                <h3>{formatDayHeading(date)}</h3>
                 <span>
                   {items.length} {items.length === 1 ? 'тренировка' : 'тренировки'}
                 </span>
@@ -158,7 +160,7 @@ const TrainingSchedule = () => {
       {selectedTraining && (
         <TrainingDetailsModal
           training={selectedTraining}
-          onClose={() => setSelectedTraining(null)}
+          onClose={closeTrainingDetails}
         />
       )}
     </section>

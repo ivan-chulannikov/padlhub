@@ -3,15 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="application-name" content="Падл хаб" />
     <meta
       name="description"
       content="Расписание первых пробных тренировок Падл хаб в формате турнирного расписания"
     />
     <meta name="theme-color" content="#17161a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Падл хаб" />
+    <meta property="og:title" content="Первые пробные тренировки — Падл хаб" />
+    <meta
+      property="og:description"
+      content="Выберите первую бесплатную тренировку по паделу по типу игры, станции и дате."
+    />
+    <meta name="twitter:card" content="summary" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap"
+    />
     <title>Первые пробные тренировки — Падл хаб</title>
+    <script>
+      (() => {
+        let theme;
+
+        try {
+          theme = localStorage.getItem('padlhub-theme');
+        } catch {
+          theme = null;
+        }
+
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]').content =
+          theme === 'dark' ? '#17161a' : '#f7f5f2';
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>Для просмотра расписания необходимо включить JavaScript.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

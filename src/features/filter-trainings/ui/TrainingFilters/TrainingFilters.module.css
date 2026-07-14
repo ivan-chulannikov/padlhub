@@ -6,14 +6,14 @@
   min-width: 220px;
   display: grid;
   gap: 8px;
-  color: #aaa7b1;
+  color: var(--text-muted);
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .selectField > div {
-  color: var(--paper);
+  color: var(--text);
   font-size: 14px;
   letter-spacing: 0;
   text-transform: none;
@@ -24,7 +24,7 @@
   display: grid;
   grid-template-columns: repeat(8, minmax(88px, 1fr));
   margin-top: 48px;
-  border: 1px solid #37353a;
+  border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -36,10 +36,10 @@
   align-content: center;
   gap: 7px;
   padding: 10px;
-  color: #a9a6ad;
+  color: var(--text-muted);
   background: transparent;
   border: 0;
-  border-right: 1px solid #37353a;
+  border-right: 1px solid var(--border);
   cursor: pointer;
   transition: color 160ms ease, background 160ms ease;
 }
@@ -50,8 +50,8 @@
 
 .dates button:hover,
 .dates button:focus-visible {
-  color: var(--paper);
-  background: #27262a;
+  color: var(--text);
+  background: var(--surface-hover);
 }
 
 .dates button span {
@@ -69,7 +69,7 @@
 .dates .active,
 .dates .active:hover,
 .dates .active:focus-visible {
-  color: #17161a;
+  color: var(--accent-contrast);
   background: var(--accent);
 }
 

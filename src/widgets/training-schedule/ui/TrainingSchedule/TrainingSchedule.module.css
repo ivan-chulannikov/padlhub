@@ -1,8 +1,9 @@
 .schedule {
   margin: 0 calc(50% - 50vw);
   padding: 70px max(20px, calc((100vw - 1380px) / 2));
-  color: var(--paper);
-  background: var(--ink);
+  color: var(--text);
+  background: var(--section-background);
+  transition: color 220ms ease, background 220ms ease;
 }
 
 .controls {
@@ -15,7 +16,7 @@
 
 .number {
   margin: 0 0 14px;
-  color: #a897ff;
+  color: var(--violet);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -41,7 +42,7 @@
   margin-bottom: 20px;
 }
 
-.dayHeading h2 {
+.dayHeading h3 {
   margin: 0;
   font-size: 19px;
   font-weight: 500;
@@ -49,9 +50,15 @@
 }
 
 .dayHeading span {
-  color: #85828a;
+  color: var(--text-muted);
   font-size: 12px;
   text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schedule {
+    transition: none;
+  }
 }
 
 .cards {

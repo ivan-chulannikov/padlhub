@@ -21,7 +21,7 @@ const TrainingCard = ({ training, onSelect }: TrainingCardProps) => {
           <span className={styles.badge}>Бесплатно</span>
           <span className={styles.typeBadge}>{training.type}</span>
         </div>
-        <h3>{training.title}</h3>
+        <h4>{training.title}</h4>
         <p className={styles.location}>
           <span aria-hidden="true">⌖</span>
           {training.station} · {training.court}
@@ -54,7 +54,12 @@ const TrainingCard = ({ training, onSelect }: TrainingCardProps) => {
         <span>свободно</span>
       </div>
 
-      <button className={styles.button} type="button" onClick={onSelect}>
+      <button
+        className={styles.button}
+        type="button"
+        aria-label={`Подробнее: ${training.type}, ${training.station}, ${training.date} в ${training.time}`}
+        onClick={onSelect}
+      >
         Подробнее
         <span aria-hidden="true">↗</span>
       </button>

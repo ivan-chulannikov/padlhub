@@ -1,18 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap');
-
-:root {
-  --ink: #17161a;
-  --paper: #f7f5f2;
-  --muted: #716d75;
-  --line: #dcd8dc;
+:root,
+:root[data-theme='light'] {
+  --background: #f7f5f2;
+  --section-background: #eeece8;
+  --surface: #ffffff;
+  --surface-hover: #f2f0ed;
+  --surface-muted: #e8e5e2;
+  --text: #17161a;
+  --text-muted: #716d75;
+  --border: #d6d2d5;
+  --border-strong: #9d989f;
   --accent: #f8873d;
-  --violet: #7744ff;
-  color: var(--ink);
-  background: var(--paper);
+  --accent-contrast: #17161a;
+  --violet: #6d3ee8;
+  --violet-hover: #5f37ca;
+  --status: #278d50;
+  --avatar-background: #e3ddff;
+  --avatar-text: #5032a5;
+  --notice-background: #fff0e5;
+  --notice-text: #514d46;
+  --backdrop: rgb(16 15 18 / 68%);
+  --shadow: 0 28px 90px rgb(0 0 0 / 20%);
+  color: var(--text);
+  background: var(--background);
   font-family: 'Onest', Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+:root[data-theme='dark'] {
+  --background: #17161a;
+  --section-background: #111014;
+  --surface: #222125;
+  --surface-hover: #2b292e;
+  --surface-muted: #39373e;
+  --text: #f7f5f2;
+  --text-muted: #aaa7b1;
+  --border: #3b393f;
+  --border-strong: #68636e;
+  --accent: #f8873d;
+  --accent-contrast: #17161a;
+  --violet: #a897ff;
+  --violet-hover: #8d76f2;
+  --status: #4dce7d;
+  --avatar-background: #3d3760;
+  --avatar-text: #d1c8ff;
+  --notice-background: #34271f;
+  --notice-text: #f0d5c3;
+  --backdrop: rgb(5 4 7 / 78%);
+  --shadow: 0 28px 90px rgb(0 0 0 / 45%);
+  color: var(--text);
+  background: var(--background);
 }
 
 * {
@@ -29,10 +67,12 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
+  color: var(--text);
+  background: var(--background);
+  transition: color 220ms ease, background 220ms ease;
 }
 
-button,
-select {
+button {
   font: inherit;
 }
 
@@ -44,6 +84,16 @@ a:focus-visible {
 }
 
 ::selection {
-  color: var(--ink);
+  color: var(--accent-contrast);
   background: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    transition: none;
+  }
 }

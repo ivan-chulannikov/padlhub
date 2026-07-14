@@ -47,10 +47,11 @@ const TrainingFilters = ({
       />
     </div>
 
-    <div className={styles.dates} aria-label="Фильтр по дате">
+    <div className={styles.dates} role="group" aria-label="Фильтр по дате">
       <button
         className={selectedDate === 'all' ? styles.active : undefined}
         type="button"
+        aria-pressed={selectedDate === 'all'}
         onClick={() => onDateChange('all')}
       >
         <span>Все</span>
@@ -61,6 +62,8 @@ const TrainingFilters = ({
           key={date.value}
           className={selectedDate === date.value ? styles.active : undefined}
           type="button"
+          aria-label={date.label}
+          aria-pressed={selectedDate === date.value}
           onClick={() => onDateChange(date.value)}
         >
           <span>{date.weekday}</span>

@@ -3,19 +3,37 @@
   margin: 0 auto;
 }
 
+.skipLink {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border-radius: 7px;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
 .header {
   min-height: 92px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border);
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--ink);
+  color: var(--text);
   font-size: 21px;
   font-weight: 800;
   letter-spacing: -1.2px;
@@ -30,11 +48,17 @@
   transform: rotate(45deg);
 }
 
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .meta {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -44,8 +68,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #38b96b;
-  box-shadow: 0 0 0 4px rgb(56 185 107 / 12%);
+  background: var(--status);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--status) 14%, transparent);
 }
 
 .hero {
@@ -91,10 +115,10 @@
 .intro {
   margin: 0 0 10px;
   padding-top: 24px;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 16px;
   line-height: 1.65;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border);
 }
 
 .footer {
@@ -103,7 +127,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -123,6 +147,10 @@
     display: none;
   }
 
+  .headerActions {
+    gap: 12px;
+  }
+
   .hero {
     min-height: auto;
     grid-template-columns: 1fr;
@@ -136,6 +164,12 @@
 
   .intro {
     max-width: 520px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skipLink {
+    transition: none;
   }
 }
 

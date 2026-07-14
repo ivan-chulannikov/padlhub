@@ -63,12 +63,18 @@ const Select = <TValue extends string,>({
   };
 
   return (
-    <div className={styles.select} ref={rootRef}>
+    <div
+      className={styles.select}
+      ref={rootRef}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) close();
+      }}
+    >
       <button
         ref={triggerRef}
         className={`${styles.trigger} ${isOpen ? styles.open : ''}`}
         type="button"
-        aria-label={ariaLabel}
+        aria-label={`${ariaLabel}: ${value}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-controls={isOpen ? listboxId : undefined}

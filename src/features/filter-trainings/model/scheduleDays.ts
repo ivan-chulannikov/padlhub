@@ -5,5 +5,6 @@ export const scheduleDays = Array.from({ length: 7 }, (_, index) => {
     value: date.toISOString().slice(0, 10),
     day: new Intl.DateTimeFormat('ru-RU', { day: '2-digit' }).format(date),
     weekday: new Intl.DateTimeFormat('ru-RU', { weekday: 'short' }).format(date).replace('.', ''),
+    label: new Intl.DateTimeFormat('ru-RU', { dateStyle: 'full' }).format(date),
   };
 });
