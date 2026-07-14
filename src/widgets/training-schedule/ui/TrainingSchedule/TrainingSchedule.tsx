@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   getStations,
+  getTrainingTypes,
   getTrainings,
   TrainingCard,
   TrainingDetailsModal,
   type StationFilter,
   type Training,
+  type TrainingTypeFilter,
 } from '@/entities/training';
 import { TrainingFilters } from '@/features/filter-trainings';
 import { formatDayHeading } from '@/shared/lib/date';
@@ -15,8 +17,10 @@ import styles from './TrainingSchedule.module.css';
 const TrainingSchedule = () => {
   const [station, setStation] = useState<StationFilter>('Все станции');
   const [selectedDate, setSelectedDate] = useState('all');
+  const [trainingType, setTrainingType] = useState<TrainingTypeFilter>('Все типы');
   const [selectedTraining, setSelectedTraining] = useState<Training | null>(null);
   const [stations, setStations] = useState<StationFilter[]>(['Все станции']);
+  const [trainingTypes, setTrainingTypes] = useState<TrainingTypeFilter[]>(['Все типы']);
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,11 +29,14 @@ const TrainingSchedule = () => {
   useEffect(() => {
     const controller = new AbortController();
 
-    getStations(controller.signal)
-      .then((items) => setStations(['Все станции', ...items]))
+    Promise.all([getStations(controller.signal), getTrainingTypes(controller.signal)])
+      .then(([stationItems, typeItems]) => {
+        setStations(['Все станции', ...stationItems]);
+        setTrainingTypes(['Все типы', ...typeItems]);
+      })
       .catch((requestError: unknown) => {
         if (requestError instanceof DOMException && requestError.name === 'AbortError') return;
-        setError('Не удалось загрузить список станций.');
+        setError('Не удалось загрузить параметры фильтрации.');
       });
 
     return () => controller.abort();
@@ -43,6 +50,7 @@ const TrainingSchedule = () => {
     getTrainings(
       {
         station: station === 'Все станции' ? undefined : station,
+        type: trainingType === 'Все типы' ? undefined : trainingType,
         date: selectedDate === 'all' ? undefined : selectedDate,
       },
       controller.signal,
@@ -57,7 +65,7 @@ const TrainingSchedule = () => {
       });
 
     return () => controller.abort();
-  }, [requestVersion, selectedDate, station]);
+  }, [requestVersion, selectedDate, station, trainingType]);
 
   const groupedTrainings = useMemo(
     () =>
@@ -73,6 +81,7 @@ const TrainingSchedule = () => {
   const resetFilters = () => {
     setSelectedDate('all');
     setStation('Все станции');
+    setTrainingType('Все типы');
   };
 
   return (
@@ -85,8 +94,11 @@ const TrainingSchedule = () => {
         <TrainingFilters
           station={station}
           stations={stations}
+          trainingType={trainingType}
+          trainingTypes={trainingTypes}
           selectedDate={selectedDate}
           onStationChange={setStation}
+          onTrainingTypeChange={setTrainingType}
           onDateChange={setSelectedDate}
         />
       </div>

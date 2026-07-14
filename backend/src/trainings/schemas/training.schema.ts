@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { stationNames, trainingTypes } from '../trainings.constants';
 
 export type TrainingDocument = HydratedDocument<Training>;
 
@@ -19,10 +20,13 @@ export class Training {
 
   @Prop({
     required: true,
-    enum: ['Нагатинская', 'Терехово', 'Ясенево'],
+    enum: stationNames,
     index: true,
   })
   station: string;
+
+  @Prop({ required: true, enum: trainingTypes, index: true })
+  type: string;
 
   @Prop({ required: true })
   address: string;

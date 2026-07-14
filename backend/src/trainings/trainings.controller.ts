@@ -17,6 +17,11 @@ export class TrainingsController {
     return this.trainingsService.findStations();
   }
 
+  @Get('types')
+  findTypes(): Promise<string[]> {
+    return this.trainingsService.findTypes();
+  }
+
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number): Promise<Training> {
     return this.trainingsService.findOne(id);

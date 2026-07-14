@@ -5,7 +5,7 @@ Fullstack-тестовое задание: расписание бесплатн
 ## Реализовано
 
 - Недельная навигация по датам.
-- Фильтрация по станции и дате через REST API.
+- Фильтрация по типу, станции и дате через REST API.
 - Группировка тренировок по дням.
 - Карточки со временем, длительностью, тренером, станцией и свободными местами.
 - Окно с подробной информацией о тренировке.
@@ -81,8 +81,10 @@ npm run dev
 GET /api/health
 GET /api/trainings
 GET /api/trainings?station=Нагатинская
+GET /api/trainings?type=Американо
 GET /api/trainings?date=2026-07-14
 GET /api/trainings/stations
+GET /api/trainings/types
 GET /api/trainings/:id
 ```
 

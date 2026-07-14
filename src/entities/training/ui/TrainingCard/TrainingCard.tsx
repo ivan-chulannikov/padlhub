@@ -17,7 +17,10 @@ const TrainingCard = ({ training, onSelect }: TrainingCardProps) => {
       </div>
 
       <div className={styles.main}>
-        <span className={styles.badge}>Бесплатно</span>
+        <div className={styles.badges}>
+          <span className={styles.badge}>Бесплатно</span>
+          <span className={styles.typeBadge}>{training.type}</span>
+        </div>
         <h3>{training.title}</h3>
         <p className={styles.location}>
           <span aria-hidden="true">⌖</span>

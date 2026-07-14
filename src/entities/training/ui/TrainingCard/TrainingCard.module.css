@@ -41,9 +41,16 @@
   min-width: 0;
 }
 
-.badge {
-  display: inline-block;
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin-bottom: 9px;
+}
+
+.badge,
+.typeBadge {
+  display: inline-block;
   padding: 4px 7px;
   color: #17161a;
   font-size: 10px;
@@ -52,6 +59,11 @@
   text-transform: uppercase;
   background: var(--accent);
   border-radius: 4px;
+}
+
+.typeBadge {
+  color: #d8d5dc;
+  background: #39373e;
 }
 
 .main h3 {

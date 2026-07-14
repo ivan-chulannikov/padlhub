@@ -2,8 +2,8 @@
   display: contents;
 }
 
-.station {
-  min-width: 260px;
+.selectField {
+  min-width: 220px;
   display: grid;
   gap: 8px;
   color: #aaa7b1;
@@ -12,7 +12,7 @@
   text-transform: uppercase;
 }
 
-.station select {
+.selectField select {
   width: 100%;
   padding: 14px 42px 14px 16px;
   color: var(--paper);
@@ -25,7 +25,7 @@
   cursor: pointer;
 }
 
-.station select:disabled {
+.selectField select:disabled {
   cursor: wait;
   opacity: 0.65;
 }
@@ -92,7 +92,7 @@
 }
 
 @media (max-width: 780px) {
-  .station {
+  .selectField {
     min-width: 0;
   }
 

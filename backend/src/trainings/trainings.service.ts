@@ -16,13 +16,24 @@ export class TrainingsService implements OnModuleInit {
     const count = await this.trainingModel.estimatedDocumentCount();
     if (count === 0) {
       await this.trainingModel.insertMany(trainingSeed);
+      return;
     }
+
+    await this.trainingModel.bulkWrite(
+      trainingSeed.map(({ id, type }) => ({
+        updateOne: {
+          filter: { id, type: { $exists: false } },
+          update: { $set: { type } },
+        },
+      })),
+    );
   }
 
   async findAll(query: ListTrainingsQueryDto): Promise<Training[]> {
-    const filter: { station?: string; date?: string } = {};
+    const filter: { station?: string; type?: string; date?: string } = {};
 
     if (query.station) filter.station = query.station;
+    if (query.type) filter.type = query.type;
     if (query.date) filter.date = query.date;
 
     return this.trainingModel
@@ -51,5 +62,9 @@ export class TrainingsService implements OnModuleInit {
     return this.trainingModel
       .distinct('station')
       .then((stations) => stations.sort());
+  }
+
+  async findTypes(): Promise<string[]> {
+    return this.trainingModel.distinct('type').then((types) => types.sort());
   }
 }

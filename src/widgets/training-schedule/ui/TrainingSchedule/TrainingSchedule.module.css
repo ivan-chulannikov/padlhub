@@ -7,7 +7,7 @@
 
 .controls {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, auto) minmax(220px, 260px);
   align-items: end;
   gap: 0 32px;
   margin-bottom: 62px;

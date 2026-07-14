@@ -1,14 +1,16 @@
 import { apiRequest } from '@/shared/api';
-import type { StationName, Training } from '../model/types';
+import type { StationName, Training, TrainingType } from '../model/types';
 
 type TrainingFilters = {
   station?: StationName;
+  type?: TrainingType;
   date?: string;
 };
 
 export function getTrainings(filters: TrainingFilters, signal?: AbortSignal): Promise<Training[]> {
   const query = new URLSearchParams();
   if (filters.station) query.set('station', filters.station);
+  if (filters.type) query.set('type', filters.type);
   if (filters.date) query.set('date', filters.date);
 
   const search = query.size ? `?${query.toString()}` : '';
@@ -17,4 +19,8 @@ export function getTrainings(filters: TrainingFilters, signal?: AbortSignal): Pr
 
 export function getStations(signal?: AbortSignal): Promise<StationName[]> {
   return apiRequest<StationName[]>('/trainings/stations', signal);
+}
+
+export function getTrainingTypes(signal?: AbortSignal): Promise<TrainingType[]> {
+  return apiRequest<TrainingType[]>('/trainings/types', signal);
 }

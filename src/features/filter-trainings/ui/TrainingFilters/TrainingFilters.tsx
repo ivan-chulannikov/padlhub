@@ -1,24 +1,45 @@
-import type { StationFilter } from '@/entities/training';
+import type { StationFilter, TrainingTypeFilter } from '@/entities/training';
 import { scheduleDays } from '../../model/scheduleDays';
 import styles from './TrainingFilters.module.css';
 
 type TrainingFiltersProps = {
   station: StationFilter;
   stations: StationFilter[];
+  trainingType: TrainingTypeFilter;
+  trainingTypes: TrainingTypeFilter[];
   selectedDate: string;
   onStationChange: (station: StationFilter) => void;
+  onTrainingTypeChange: (trainingType: TrainingTypeFilter) => void;
   onDateChange: (date: string) => void;
 };
 
 const TrainingFilters = ({
   station,
   stations,
+  trainingType,
+  trainingTypes,
   selectedDate,
   onStationChange,
+  onTrainingTypeChange,
   onDateChange,
 }: TrainingFiltersProps) => (
   <div className={styles.filters}>
-    <label className={styles.station}>
+    <label className={styles.selectField}>
+      <span>Тип</span>
+      <select
+        value={trainingType}
+        disabled={trainingTypes.length === 1}
+        onChange={(event) =>
+          onTrainingTypeChange(event.target.value as TrainingTypeFilter)
+        }
+      >
+        {trainingTypes.map((item) => (
+          <option key={item}>{item}</option>
+        ))}
+      </select>
+    </label>
+
+    <label className={styles.selectField}>
       <span>Станция</span>
       <select
         value={station}
