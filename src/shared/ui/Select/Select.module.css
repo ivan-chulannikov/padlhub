@@ -1,0 +1,120 @@
+.select {
+  position: relative;
+  width: 100%;
+}
+
+.trigger {
+  width: 100%;
+  min-height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px 12px 16px;
+  color: var(--paper);
+  font: inherit;
+  text-align: left;
+  background: #222125;
+  border: 1px solid #3b393f;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.trigger:hover,
+.trigger:focus-visible,
+.open {
+  background: #29282c;
+  border-color: #65616b;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid #a897ff;
+  outline-offset: 2px;
+}
+
+.trigger:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.arrow {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  margin-right: 3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.open .arrow {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 10px);
+  right: 0;
+  left: 0;
+  display: grid;
+  gap: 4px;
+  padding: 6px;
+  background: #29282c;
+  border: 1px solid #49464f;
+  border-radius: 9px;
+  box-shadow: 0 18px 42px rgb(0 0 0 / 35%);
+  transform-origin: top;
+  animation: dropdown-in 170ms ease-out;
+}
+
+.option {
+  width: 100%;
+  padding: 11px 12px;
+  color: #d8d5dc;
+  font: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 130ms ease, background 130ms ease;
+}
+
+.option:hover,
+.option:focus-visible {
+  color: var(--paper);
+  background: #3b3940;
+  outline: none;
+}
+
+.option[aria-selected='true'] {
+  color: #17161a;
+  background: var(--accent);
+}
+
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scaleY(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trigger,
+  .arrow,
+  .option {
+    transition: none;
+  }
+
+  .menu {
+    animation: none;
+  }
+}

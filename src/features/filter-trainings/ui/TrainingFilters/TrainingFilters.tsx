@@ -1,4 +1,5 @@
 import type { StationFilter, TrainingTypeFilter } from '@/entities/training';
+import { Select } from '@/shared/ui/Select';
 import { scheduleDays } from '../../model/scheduleDays';
 import styles from './TrainingFilters.module.css';
 
@@ -24,33 +25,27 @@ const TrainingFilters = ({
   onDateChange,
 }: TrainingFiltersProps) => (
   <div className={styles.filters}>
-    <label className={styles.selectField}>
+    <div className={styles.selectField}>
       <span>Тип</span>
-      <select
+      <Select
+        ariaLabel="Тип игры"
         value={trainingType}
+        options={trainingTypes}
         disabled={trainingTypes.length === 1}
-        onChange={(event) =>
-          onTrainingTypeChange(event.target.value as TrainingTypeFilter)
-        }
-      >
-        {trainingTypes.map((item) => (
-          <option key={item}>{item}</option>
-        ))}
-      </select>
-    </label>
+        onChange={onTrainingTypeChange}
+      />
+    </div>
 
-    <label className={styles.selectField}>
+    <div className={styles.selectField}>
       <span>Станция</span>
-      <select
+      <Select
+        ariaLabel="Станция"
         value={station}
+        options={stations}
         disabled={stations.length === 1}
-        onChange={(event) => onStationChange(event.target.value as StationFilter)}
-      >
-        {stations.map((item) => (
-          <option key={item}>{item}</option>
-        ))}
-      </select>
-    </label>
+        onChange={onStationChange}
+      />
+    </div>
 
     <div className={styles.dates} aria-label="Фильтр по дате">
       <button

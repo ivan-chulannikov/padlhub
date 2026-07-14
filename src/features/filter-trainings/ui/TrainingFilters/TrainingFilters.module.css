@@ -12,22 +12,11 @@
   text-transform: uppercase;
 }
 
-.selectField select {
-  width: 100%;
-  padding: 14px 42px 14px 16px;
+.selectField > div {
   color: var(--paper);
   font-size: 14px;
   letter-spacing: 0;
   text-transform: none;
-  background: #222125;
-  border: 1px solid #3b393f;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.selectField select:disabled {
-  cursor: wait;
-  opacity: 0.65;
 }
 
 .dates {
