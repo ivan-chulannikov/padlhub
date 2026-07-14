@@ -29,6 +29,10 @@ const TrainingDetailsModal = ({ training, onClose }: TrainingDetailsModalProps) 
       </div>
       <dl className={styles.details}>
         <div>
+          <dt>Тип игры</dt>
+          <dd>{training.type}</dd>
+        </div>
+        <div>
           <dt>Станция</dt>
           <dd>{training.station}</dd>
         </div>
